@@ -1,0 +1,79 @@
+<!-- Navbar -->
+<nav class="z-10 flex items-center fixed justify-between w-full px-6 py-3 bg-white shadow-md">
+  <!-- Logo and Other Menu -->
+  <div class="flex items-center space-x-6">
+    <img src="assets/swiggy_logo.png" alt="Logo" class="h-12" />
+    <div class="flex items-center space-x-2 text-gray-800 font-semibold">
+      <span>Other</span>
+      <i class="material-icons text-orange-500">expand_more</i>
+    </div>
+  </div>
+
+  <!-- Right Side Menu -->
+  <div class="flex items-center space-x-6">
+    <a href="#" class="flex items-center text-gray-700 hover:text-gray-900 font-medium">
+      <i class="material-icons mr-1">business_center</i> Swiggy Corporate
+    </a>
+    <a href="#" class="flex items-center text-gray-700 hover:text-gray-900 font-medium">
+      <i class="material-icons mr-1">search</i> Search
+    </a>
+    <a href="#" class="flex items-center text-gray-700 hover:text-gray-900 font-medium relative">
+      <i class="material-icons mr-1">percent</i> Offers
+      <span class="text-xs text-orange-500 font-semibold ml-1">NEW</span>
+    </a>
+    <a href="#" class="flex items-center text-gray-700 hover:text-gray-900 font-medium">
+      <i class="material-icons mr-1">help_outline</i> Help
+    </a>
+    <!-- <a href="#" class="flex items-center text-gray-700 hover:text-gray-900 font-medium">
+      <i class="material-icons mr-1">person_outline</i> Sign In
+    </a> -->
+
+    <!-- Cart icon with dropdown -->
+<div class="relative">
+  <div (click)="toggleCartDropdown()" class="flex items-center text-gray-700 hover:text-gray-900 font-medium cursor-pointer">
+    <i class="material-icons mr-1">shopping_cart</i> Cart
+    <span class="absolute top-0 right-0 -mt-2 -mr-2 h-5 w-5 bg-green-500 text-white text-xs flex items-center justify-center rounded-full">
+      {{ cartItems.length }}
+    </span>
+  </div>
+  <div *ngIf="cartVisible" class="absolute right-0 mt-2 w-72 py-4 bg-white shadow-lg rounded-lg z-10">
+    <div class="px-4 pb-2 border-b border-gray-200">
+      <div class="flex items-center space-x-4">
+        <img src="assets/respic.png" alt="Burger Image" class="h-12 w-12 rounded-lg">
+        <div>
+          <p class="font-semibold text-gray-800">9th Street</p>
+          <p class="text-sm text-gray-500">Sahid Nagar</p>
+          <span class="text-sm text-blue-500 font-medium cursor-pointer">VIEW FULL MENU</span>
+        </div>
+      </div>
+    </div>
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let item of cartItems" class="flex justify-between items-center px-4 py-2 text-sm text-gray-800">
+        <div class="flex items-center space-x-2">
+          <button (click)="decreaseQuantity(item)" class="px-1 bg-gray-200 rounded text-gray-700">-</button>
+          <span>{{ item.name }} x{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="px-1 bg-gray-200 rounded text-gray-700">+</button>
+        </div>
+        <span>₹{{ item.price * item.quantity }}</span>
+      </li>
+    </ul>
+    <div class="px-4 pt-4">
+      <div class="flex justify-between font-semibold text-gray-700">
+        <span>Sub total</span>
+        <span>₹{{ cartSubtotal }}</span>
+      </div>
+      <p class="text-xs text-gray-500">Extra charges may apply</p>
+    </div>
+    <div class="px-4 py-2 mt-4">
+      <!-- Trigger PayPal Checkout on click -->
+      <button (click)="openPayPalCheckout()" class="w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600">
+        CHECKOUT
+      </button>
+      <div id="paypal-button-container"></div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</nav>
